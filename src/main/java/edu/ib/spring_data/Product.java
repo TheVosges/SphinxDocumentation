@@ -1,21 +1,22 @@
 package edu.ib.spring_data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long product_id;
 
     private String name;
     private float price;
     private boolean available;
+    @Transient
+    @ManyToMany(mappedBy = "order_id")
+    private Set<Order> orders;
 
     public Product(String name, float price, boolean available) {
         this.name = name;
@@ -26,35 +27,12 @@ public class Product {
     public Product() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Float.compare(product.price, price) == 0 && available == product.available && id.equals(product.id) && Objects.equals(name, product.name);
+    public Long getProduct_id() {
+        return product_id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, available);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", available=" + available +
-                '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setProduct_id(Long product_id) {
+        this.product_id = product_id;
     }
 
     public String getName() {
@@ -79,5 +57,18 @@ public class Product {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Float.compare(product.price, price) == 0 && available == product.available && Objects.equals(product_id, product.product_id) && Objects.equals(name, product.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(product_id, name, price, available);
     }
 }

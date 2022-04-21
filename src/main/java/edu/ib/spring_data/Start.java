@@ -5,31 +5,40 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 @Component
 public class Start {
 
     private ProductRepo productRepo;
+    private OrderRepo orderRepo;
+    private CustomerRepo customerRepo;
 
     @Autowired
-    public Start(ProductRepo productRepo) {
+    public Start(ProductRepo productRepo, OrderRepo orderRepo, CustomerRepo customerRepo) {
         this.productRepo = productRepo;
+        this.orderRepo = orderRepo;
+        this.customerRepo = customerRepo;
     }
 
     @EventListener(ApplicationReadyEvent.class)
     public void runExample() {
+        Product product = new Product("Korek", 2.55f, true);
+        Product product1 = new Product("Rura", 5f, true);
+        Customer customer = new Customer("Jak Kowalski", "Wrocław");
+        Set<Product> products = new HashSet<>() {
+            {
+                add(product);
+                add(product1);
+            }};
+        Order order = new Order(customer, products, LocalDateTime.now(), "in progress");
 
-        Product product1 = new Product("Malin", 1400,true);
+        productRepo.save(product);
         productRepo.save(product1);
-
-        Product product2 = new Product("ECUMaster", 2000,false);
-        productRepo.save(product2);
-
-        Product product3 = new Product("Cybul", 1000,true);
-        productRepo.save(product3);
-
-
-        Iterable<Product> all = productRepo.findAll();
-        all.forEach(System.out::println);
+        customerRepo.save(customer);
+        orderRepo.save(order);
 
     }
 }
