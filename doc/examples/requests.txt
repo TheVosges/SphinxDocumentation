@@ -1,0 +1,106 @@
+GET http://localhost:8082/api/customer/all
+
+GET http://localhost:8082/api/customer?index=1
+
+POST http://localhost:8082/api/admin/customer
+{
+    "name": "Osoba Testowa",
+    "address": "Piekło"
+}
+
+PATCH http://localhost:8082/api/admin/customer
+{
+    "customer_id": 4,
+    "name": "Osoba Testowa3"
+}
+
+PUT http://localhost:8082/api/admin/customer
+{
+    "customer_id": 4,
+    "name": "Osoba Testowa",
+    "address": "Piekło"
+}
+
+GET http://localhost:8082/api/order/all
+
+GET http://localhost:8082/api/order?index=2
+
+POST http://localhost:8082/api/admin/order
+{
+    "customer": {
+        "name": "Osoba Testowa",
+        "address": "Piekło"
+    },
+    "products": [
+        {
+            "name": "Ciastka",
+            "price": 5.0,
+            "available": true
+        },
+        {
+            "name": "Tort",
+            "price": 2.55,
+            "available": true
+        }
+    ],
+    "placeDate": "2022-05-10T23:11:00.091127",
+    "status": "in progress"
+}
+
+PATCH http://localhost:8082/api/admin/order
+{
+    "order_id": 1,
+    "status": "Done!"
+}
+
+PUT http://localhost:8082/api/admin/order
+{
+    "order_id": 2,
+    "customer": {
+        "customer_id": 5,
+        "name": "Osoba Testowa",
+        "address": "Piekło"
+    },
+    "products": [
+        {
+            "product_id": 3,
+            "name": "Tort",
+            "price": 2.55,
+            "available": true
+        },
+        {
+            "product_id": 4,
+            "name": "Ciastka",
+            "price": 5.0,
+            "available": true
+        }
+    ],
+    "placeDate": "2022-05-10T23:11:00.091127",
+    "status": "Fail!"
+}
+
+GET http://localhost:8082/api/product/all
+
+GET http://localhost:8082/api/product?index=2
+
+POST http://localhost:8082/api/admin/product
+{
+        "name": "test",
+        "price": 1.0,
+        "available": true
+}
+
+PATCH http://localhost:8082/api/admin/product
+{
+    "product_id": 5,
+    "price": 1.1
+}
+
+PUT http://localhost:8082/api/admin/product
+{
+        "product_id": 5,
+        "name": "test",
+        "price": 1.1,
+        "available": false
+}
+
