@@ -12,10 +12,10 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order_id;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Customer customer;
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(
             name = "products_orders",
             joinColumns = @JoinColumn(name = "order_id"),
@@ -87,5 +87,21 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(order_id, customer, products, placeDate, status);
+    }
+
+
+    public void updateClass(Order order){
+        if (order.getCustomer() != null) {
+            this.customer = order.getCustomer();
+        }
+        if (order.getProducts() != null) {
+            this.products = order.getProducts();
+        }
+        if (order.getStatus() != null) {
+            this.status = order.getStatus();
+        }
+        if (order.getPlaceDate() != null) {
+            this.placeDate = order.getPlaceDate();
+        }
     }
 }
