@@ -1,4 +1,4 @@
-package edu.ib.spring_data;
+package edu.ib.spring_data.dao.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

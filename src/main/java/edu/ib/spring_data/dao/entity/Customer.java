@@ -1,4 +1,4 @@
-package edu.ib.spring_data;
+package edu.ib.spring_data.dao.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -62,4 +62,14 @@ public class Customer {
     public int hashCode() {
         return Objects.hash(customer_id, name, address);
     }
+
+    public void updateClass(Customer customer){
+        if (customer.getName() != null) {
+            this.name = customer.getName();
+        }
+        if (customer.getAddress() != null) {
+            this.address = customer.getAddress();
+        }
+    }
+
 }
