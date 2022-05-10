@@ -71,4 +71,13 @@ public class Product {
     public int hashCode() {
         return Objects.hash(product_id, name, price, available);
     }
+
+    public void updateClass(Product product){
+        if (product.getName() != null) {
+            this.name = product.getName();
+        }
+        if (product.getPrice() != 0.0f) {
+            this.price = product.getPrice();
+        }
+    }
 }
