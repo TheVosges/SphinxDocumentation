@@ -43,9 +43,9 @@ public class CustomerManager {
 
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
-        save(new Customer("Jak Kowalski", "Wrocław"));
-        save(new Customer("Ola Żak", "Warszawa"));
-        save(new Customer("Joe Doe", "Los Andżeles"));
+//        save(new Customer("Jak Kowalski", "Wrocław"));
+//        save(new Customer("Ola Żak", "Warszawa"));
+//        save(new Customer("Joe Doe", "Los Andżeles"));
     }
 
 }

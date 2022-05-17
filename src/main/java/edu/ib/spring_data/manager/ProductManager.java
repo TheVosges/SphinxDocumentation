@@ -43,8 +43,8 @@ public class ProductManager {
 
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
-        save(new Product("Rura", 5f, true));
-        save(new Product("Korek", 2.55f, true));
+//        save(new Product("Rura", 5f, true));
+//        save(new Product("Korek", 2.55f, true));
     }
 
 }

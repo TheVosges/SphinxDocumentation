@@ -49,16 +49,16 @@ public class OrderManager {
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
 
-        Product product = new Product("Korek", 2.55f, true);
-        Product product1 = new Product("Rura", 5f, true);
-        Customer customer = new Customer("Jak Kowalski", "Wrocław");
-        Set<Product> products = new HashSet<>() {
-            {
-                add(product);
-                add(product1);
-            }};
-        Order order = new Order(customer, products, LocalDateTime.now(), "in progress");
-        save(order);
+//        Product product = new Product("Korek", 2.55f, true);
+//        Product product1 = new Product("Rura", 5f, true);
+//        Customer customer = new Customer("Jak Kowalski", "Wrocław");
+//        Set<Product> products = new HashSet<>() {
+//            {
+//                add(product);
+//                add(product1);
+//            }};
+//        Order order = new Order(customer, products, LocalDateTime.now(), "in progress");
+//        save(order);
 
     }
 
