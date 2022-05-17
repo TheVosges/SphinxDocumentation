@@ -43,20 +43,33 @@ public class HttpConfiguration extends WebSecurityConfigurerAdapter {
 
         UserDetailsService userDetails = auth.getDefaultUserDetailsService();
 
-        System.out.println(userDetails.loadUserByUsername("admin").getPassword());
-        System.out.println(userDetails.loadUserByUsername("admin").getAuthorities());
+//        System.out.println(userDetails.loadUserByUsername("admin").getPassword());
+//        System.out.println(userDetails.loadUserByUsername("admin").getAuthorities());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-//        http.authorizeRequests().antMatchers("/").permitAll().and()
-//                .authorizeRequests().antMatchers("/console/**").permitAll();
-////
-//        http.headers().frameOptions().disable();
+        // ALLOWING H2 CONSOLE
+        http.authorizeRequests().antMatchers("/console/**").permitAll();
+//
+        http.headers().frameOptions().disable();
+
 
         http.httpBasic().and().authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/api/customer/all").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET,"/api/product").hasAnyAuthority("CUSTOMER", "ADMIN")
+                .antMatchers(HttpMethod.GET,"/api/product/all").hasAnyAuthority("CUSTOMER", "ADMIN")
+                .antMatchers(HttpMethod.GET,"/api/order").hasAnyAuthority("CUSTOMER", "ADMIN")
+                .antMatchers(HttpMethod.GET,"/api/order/all").hasAnyAuthority("CUSTOMER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/order").hasAnyAuthority("CUSTOMER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/admin/product").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/admin/product").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH,"/api/admin/product").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/admin/customer").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/admin/customer").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH,"/api/admin/customer").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/admin/orde").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH,"/api/admin/orde").hasAuthority("ADMIN")
                 .and().csrf()
                 .disable();
     }
