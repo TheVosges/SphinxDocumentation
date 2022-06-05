@@ -58,3 +58,4 @@ Odpowiedź: Myślę że najtrudniejszym było zrozumienie działania relacji @Ma
     2. czym jest ORM - Object-Relational Mapping to technika mapowania relecyjnych baz danych do obiektów języka programowania oraz odwrotnie.  
 
     3. czym jest tabela łącznikowa - tabela łącznikowa powstaje w przypadku relacji wiele do wielu. Jest to pośrednik tej relacji posiadający informacje o tej relacji (np. zamówienie 1 zawiera produkt 1, zamówienie 1 zawiera produkt 2, zamówienie 2 zawiera produkt 1).# SphinxDocumentation
+# SphinxDocumentation
